@@ -7,6 +7,7 @@ namespace Ticker
     {
         static void Main(string[] args)
         {
+            Console.Title = "Running Line";
             Console.ForegroundColor = ConsoleColor.Cyan;
             var rl = new RunningLineCreator();
             rl.Advertisments.Add("Վաճառվում է բնակարան Ղափանի կենտրոնում, կոդ DP154, գինը՝ պայմանագրային");
