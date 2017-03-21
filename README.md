@@ -12,7 +12,7 @@ rl.Advertisments.Add("Այստեղ կարող է լինել Ձեր գովազդ�
 
 The app will create an entertaining scrolling text :+1:
 
-![gif](https://cloud.githubusercontent.com/assets/25085025/22297349/6b94a724-e336-11e6-8eba-85283f8eec73.gif)
+![gif](https://cloud.githubusercontent.com/assets/25085025/24133833/979a2354-0e19-11e7-966e-c3445c831f02.gif)
 
 # Keywords
 
