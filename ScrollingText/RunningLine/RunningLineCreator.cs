@@ -7,35 +7,40 @@ namespace RunningLine
 {
     public class RunningLineCreator
     {
-        public RunningLineCreator()
+        private readonly List<string> _advertisments = new();
+        private Queue<char> _visible;
+        private Queue<char> _notVisible;
+
+        public void AddAdvertisment(string text)
         {
-
+            _advertisments.Add(text);
         }
-
-        public RunningLineCreator(string text)
-        {
-            this.Advertisments.Add(text);
-        }
-
-        public List<string> Advertisments { get; set; } = new List<string>();
 
         public void RunTheLine()
         {
-            var allText = string.Join("", Advertisments.Select(t => t + new string(' ', 4)));
-            var visibleOnConsole = allText.ToList().GetRange(0, 80);
-            var notVisible = allText.ToList().GetRange(80, allText.Length - 80);
-            char c;
+            var text = $"{string.Join("    ", _advertisments)}    ";
 
+            if(text.Length <= 80)
+                text = text.PadRight(160);
+
+            _visible = new Queue<char>(new string(' ', 80));
+            _notVisible = new Queue<char>(text);
+
+            var counter = 0;
             while (true)
             {
                 Console.Clear();
-                Console.Write(new string(visibleOnConsole.ToArray()));
-                Thread.Sleep(200);
-                c = visibleOnConsole[0];
-                visibleOnConsole.RemoveAt(0);
-                notVisible.Add(c);
-                visibleOnConsole.Add(notVisible[0]);
-                notVisible.RemoveAt(0);
+                Console.Write(new string(_visible.ToArray()));
+                Thread.Sleep(100);            
+
+                if(counter < 80)
+                {
+                    _visible.Dequeue();
+                    counter++;
+                }
+                else 
+                    _notVisible.Enqueue(_visible.Dequeue());
+                _visible.Enqueue(_notVisible.Dequeue());      
             }
         }
     }
